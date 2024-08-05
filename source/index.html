@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- PUT UNICONS HERE-->
+
+        <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="/css/style.css">
+
+        <title> Portfolio</title>
+    </head>
+
+    <body>
+        <div class="container">
+            <nav id="header">
+                <div class="nav-logo"> 
+                    <p class="nav-name">Callum</p>
+                    <span></span>
+                </div>
+                <div class="nav-menu" id="myNavMenu">
+                    <ul class="nav_menu_list">
+                        <li class="nav_list">
+                            <a href="#" class="nav-link"> Home</a>
+                            <div class="circle"></div>
+                        </li>
+                        <li class="nav_list">
+                            <a href="#about" class="nav-link"> About</a>
+                            <div class="circle"></div>
+                        </li>
+                        <li class="nav_list">
+                            <a href="#comments" class="nav-link"> Comments</a>
+                            <div class="circle"></div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="nav-menu-btn">
+                    <i class="uil uil-bars" onclick="myMenuFunction()"></i>
+                </div>
+            </nav>
+
+            <main class="wrapper">
+                <section class="featured-box" id="home">
+                    <div class="featured-text">
+                        <div class="featured-text-card">
+                            <span>Callum MacDonald</span>
+                        </div>
+                        <div class="featured-name">
+                            <p>I'm a <span class="typedText"></span></p>
+                        </div>
+                        <div class="featured-text-info">
+                            <p>Programmer with a passion for problem solving,</p>
+                            <p>eager to learn new skills</p>
+                        </div>
+                        <div class="social_icons">
+                            <a class="icon" href="https://www.linkedin.com/in/macdonald-callum" target="_blank">
+                                <i class="uil uil-linkedin"></i></a>
+                            <a class="icon" href="https://github.com/calmacdonald" target="_blank">
+                                <i class="uil uil-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="featured-image">
+                        <div class="image">
+                            <img src="images/avatar.jpg" alt="avatar">
+                        </div>
+                    </div>
+                    <div class="scroll-icon-box">
+                        <a href="#about" class="scroll-btn">
+                            <i class="uil uil-angle-down"></i>
+                            <p>Scroll Down</p>
+                        </a>
+                    </div>
+                </section>
+                <section class="section" id="about">
+                    <div class="top-header">
+                        <h1>About Me</h1>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="about-info">
+                                <h3>My introduction</h3>
+                                <p>I am a graduate from Washington State University with a degree in computer science. I have experience in the skills listed</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="skills-box">
+                                <div class="skills-header">
+                                    <h3>Frontend</h3>
+                                </div>
+                                <div class="skills-list">
+                                    <span>HTML</span>
+                                    <span>CSS</span>
+                                    <span>Javascript</span>
+                                </div>
+                            </div>
+                            <div class="skills-box">
+                                <div class="skills-header">
+                                    <h3>Backend</h3>
+                                </div>
+                                <div class="skills-list">
+                                    <span>Python</span>
+                                    <span>C++</span>
+                                </div>
+                            </div>
+                            <div class="skills-box">
+                                <div class="skills-header">
+                                    <h3>Database</h3>
+                                </div>
+                                <div class="skills-list">
+                                    <span>MongoDB</span>
+                                    <span>PostgreSQL</span>
+                                    <span>MySQL</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="section" id="comments">
+                    <div class="top-header">
+                        <h1>Comments</h1>
+                    </div>
+                    <div class="row">
+                        <form class="container" action="/comments" method="post">
+                            <div class="col">
+                                <div class="form-control">
+                                    <div class="text-area">
+                                        <textarea name="text" placeholder="Comment"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-button">
+                                <button type="submit" class="btn">Send <i class="uil uil-message"></i></button>
+                            </div>
+                        </form>
+                        <div class="comment-area">
+                            <h3>Recent Comments</h3>
+                        </div>
+                        <ul id="comments-list">
+                            <!-- comments-list -->
+                        </ul>
+                        <script>
+                            async function loadComments() {
+                                try{
+                                    const response = await fetch('/api/comments');
+                                    if (!response.ok) {
+                                        throw new Error('Network response was not ok');
+                                    }
+
+                                    const comments = await response.json();
+
+                                    const commentsList = document.getElementById('comments-list');
+
+                                    commentsList.innerHTML = '';
+
+                                    comments.forEach(comment => {
+                                        const listItem = document.createElement('li');
+                                        listItem.textContent = comment.text;
+                                        commentsList.appendChild(listItem);
+                                    });
+                                } catch (error){
+                                    console.error('Error loading comments:', error);
+                                }
+                            }
+
+                            window.onload = loadComments;
+                        </script>
+                    </div>
+                </section>
+            </main>
+        </div>
+
+        </header>
+        <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+        <script src="https://unpkg.com/scrollreveal"></script>
+        <script src="js/main.js"></script>
+    </body>
+</html>
