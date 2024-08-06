@@ -68,6 +68,7 @@ const srRight = ScrollReveal({
 })
 
 srRight.reveal('.skills-box',{})
+srRight.reveal('.comment-area',{})
 
 const srBottom = ScrollReveal({
     origin: 'bottom',

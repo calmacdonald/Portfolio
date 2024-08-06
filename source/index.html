@@ -4,11 +4,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <!-- PUT UNICONS HERE-->
-
         <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
 
-        <!-- CSS -->
         <link rel="stylesheet" href="/css/style.css">
 
         <title> Portfolio</title>
@@ -122,25 +119,32 @@
                     <div class="top-header">
                         <h1>Comments</h1>
                     </div>
-                    <div class="row">
-                        <form class="container" action="/comments" method="post">
-                            <div class="col">
-                                <div class="form-control">
-                                    <div class="text-area">
-                                        <textarea name="text" placeholder="Comment"></textarea>
-                                    </div>
+                    <form class="row" action="/comments" method="post">
+                        <div class="form-col">
+                            <div class="form-control">
+                                <div class="text-area">
+                                    <textarea name="text" placeholder="Comment"></textarea>
                                 </div>
                             </div>
+                        
                             <div class="form-button">
                                 <button type="submit" class="btn">Send <i class="uil uil-message"></i></button>
                             </div>
-                        </form>
-                        <div class="comment-area">
-                            <h3>Recent Comments</h3>
                         </div>
-                        <ul id="comments-list">
-                            <!-- comments-list -->
-                        </ul>
+                    
+                        <div class="col">
+                            <div class="comment-area">
+                                <div class="comments-header">
+                                    <h3>Recent Comments</h3>
+                                </div>
+                            
+                                <ul class="comments-list" id="comments-list">
+                                    <!-- comments-list -->
+                                </ul>
+                            </div>
+                        </div>
+                        
+                    </form>
                         <script>
                             async function loadComments() {
                                 try{
@@ -157,6 +161,7 @@
 
                                     comments.forEach(comment => {
                                         const listItem = document.createElement('li');
+                                        listItem.classList.add("comment_indv");
                                         listItem.textContent = comment.text;
                                         commentsList.appendChild(listItem);
                                     });
@@ -167,7 +172,6 @@
 
                             window.onload = loadComments;
                         </script>
-                    </div>
                 </section>
             </main>
         </div>

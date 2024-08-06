@@ -4,7 +4,6 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
-const fs = require('fs');
 
 const app = express();
 app.use(bodyParser.json());
@@ -53,7 +52,6 @@ app.post('/comments', async (req, res) => {
 
   try {
     await newComment.save();
-    //res.status(201).send(newComment);
     console.log('Comment saved:', newComment);
     res.redirect('/');
   } catch (err) {
