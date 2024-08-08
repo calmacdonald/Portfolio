@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/aws-amplify/4.3.9/aws-amplify.min.js"></script>
         <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
 
         <link rel="stylesheet" href="/css/style.css">
@@ -146,7 +146,31 @@
                         
                     </form>
                         <script>
-                            async function loadComments() {
+                            
+                            fetch('./amplify_outputs.json')
+                            .then(response => response.json())
+                            .then(outputs => {
+                                aws_amplify.Amplify.configure({
+                                    Auth: {
+                                        userPoolId: 'us-east-2_boGg8Nncy', // Replace with your User Pool ID
+                                        userPoolWebClientId: '7ff7s0dl1h4abnnnh5ap5ctpgl', // Replace with your App Client ID
+                                        region: 'us-east-2', // Replace with your AWS region
+                                    }
+                                });
+                                console.log("we are in the endgame");
+                                const client = aws_amplify.API.generateClient;
+
+                                client.query('comments').then(todos => {
+                                console.log('Fetched todos:', todos);
+                                }).catch(error => {
+                                console.error('Error fetching todos:', error);
+                                });
+                            })
+                            .catch(error => console.error('Error loading Amplify configuration:', error));
+
+
+
+                            /*async function loadComments() {
                                 try{
                                     const response = await fetch('/api/comments');
                                     if (!response.ok) {
@@ -170,7 +194,7 @@
                                 }
                             }
 
-                            window.onload = loadComments;
+                            window.onload = loadComments;*/
                         </script>
                 </section>
             </main>

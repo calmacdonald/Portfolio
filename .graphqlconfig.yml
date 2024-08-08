@@ -1,0 +1,12 @@
+projects:
+  portfolio3:
+    schemaPath: source/graphql/schema.json
+    includes:
+      - source/graphql/**/*.js
+    excludes:
+      - ./amplify/**
+    extensions:
+      amplify:
+        codeGenTarget: javascript
+        generatedFileName: ''
+        docsFilePath: source/graphql

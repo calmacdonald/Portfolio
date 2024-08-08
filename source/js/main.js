@@ -1,3 +1,17 @@
+import { Amplify } from 'aws-amplify';
+import outputs from '../amplify_outputs.json';
+import { generateClient, get } from 'aws-amplify/api';
+import { Schema } from '../../amplify part 2/data/resource';
+
+
+/*function getComments(){
+    Amplify.configure(outputs);
+    const client = generateClient<Schema>();
+    await client.graphql({
+        query: 
+    })
+}*/
+
 
 function myMenuFunction(){
     var menuBtn = document.getElementById("myNavMenu");

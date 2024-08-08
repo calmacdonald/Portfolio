@@ -1,0 +1,33 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-portfolio2-dev-26e0b-authRole",
+      "UnauthRoleArn": "arn:aws:iam::026090530357:role/amplify-portfolio2-dev-26e0b-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::026090530357:role/amplify-portfolio2-dev-26e0b-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-portfolio2-dev-26e0b-deployment",
+      "UnauthRoleName": "amplify-portfolio2-dev-26e0b-unauthRole",
+      "StackName": "amplify-portfolio2-dev-26e0b",
+      "StackId": "arn:aws:cloudformation:us-east-2:026090530357:stack/amplify-portfolio2-dev-26e0b/94e09050-5559-11ef-9ae4-060d6f2e6675",
+      "AmplifyAppId": "d1v2nirizj4ksd"
+    }
+  },
+  "api": {
+    "portfolio2": {
+      "service": "AppSync",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "output": {
+        "authConfig": {
+          "defaultAuthentication": {
+            "authenticationType": "API_KEY",
+            "apiKeyConfig": {
+              "apiKeyExpirationDays": 7
+            }
+          },
+          "additionalAuthenticationProviders": []
+        }
+      }
+    }
+  }
+}
