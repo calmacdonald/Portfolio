@@ -9,8 +9,10 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true })); // To parse URL-encoded data
 app.use(cors());
-app.use(express.static(path.join(__dirname, 'source')));
+app.use(express.static(path.join(__dirname, '../source')));
 const uri = process.env.MONGODB_URI;
+
+console.log(uri);
 
 // Connect to MongoDB Atlas using Mongoose
 const connectDB = async () => {
@@ -36,12 +38,10 @@ const commentSchema = new mongoose.Schema({
 const Comment = mongoose.model('Comment', commentSchema);
 
 // Serve the HTML file
-app.get('/source', (req, res) => {
+app.get('../source', (req, res) => {
   console.log('Success');
   res.sendFile(path.join(__dirname, 'source', 'index.html'));
 });
-
-
 
 // Add a new comment
 app.post('/comments', async (req, res) => {
@@ -71,6 +71,6 @@ app.get('/api/comments', async (req, res) =>{
     }
 });
 
-app.listen(8080, () => {
+app.listen(3000, () => {
   console.log('Server running on port 8080');
 });
